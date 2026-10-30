@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="bg">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Занималня АНЕТО в София: помощ с уроците, игри и творчество в уютна стая. Работно време понеделник–петък 8:30–18:00, събота 10:00–12:00. Тел. 087 898 7552.">
+<meta name="theme-color" content="#17525C">
+<meta property="og:title" content="Занималня АНЕТО">
+<meta property="og:description" content="Детска занималня в центъра на София, ул. „Бели Искър“ 21.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='24' cy='24' r='18' fill='%23E9A91C'/%3E%3Ccircle cx='46' cy='34' r='13' fill='%23CB4430'/%3E%3Ccircle cx='28' cy='48' r='11' fill='%235B2A6E'/%3E%3C/svg%3E">
+<style>
+:root{color-scheme:light}
+body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>Занималня АНЕТО</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Unbounded:wght@500;700&display=swap">
+<style>
+/* Layout: the room's own wall. White wall, one mustard panel, one petrol-teal panel, polka dots as the only ornament. */
+:root{
+  --bg:#FBFAF6; --surface:#FFFFFF; --fg:#1E2A2E; --muted:#55666B; --line:#E5DFD1;
+  --accent:#17525C; --on-accent:#FFFFFF;
+  --teal:#17525C; --yellow:#E9A91C; --red:#CB4430; --purple:#5B2A6E; --orange:#EE8A2E; --pink:#E58AA3; --grey:#8C8F95;
+  --on-yellow:#2A1E05; --on-orange:#2A1604; --on-pink:#3A1020; --on-dark:#FFFFFF;
+  --wood:#A9743F; --globe:#2F6C78; --land:#7BA05A;
+  --font-display:'Unbounded','Nunito',system-ui,sans-serif;
+  --font-body:'Nunito',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F1B1E; --surface:#16272B; --fg:#F2EFE7; --muted:#A8B8BB; --line:#26383C;
+    --accent:#3AA3B5; --on-accent:#05222A; --wood:#7E5530; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F1B1E; --surface:#16272B; --fg:#F2EFE7; --muted:#A8B8BB; --line:#26383C;
+  --accent:#3AA3B5; --on-accent:#05222A; --wood:#7E5530; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-size:17px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+h1,h2,h3{font-family:var(--font-display);font-weight:700;line-height:1.12;margin:0;text-wrap:balance;overflow-wrap:break-word}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin-inline:auto}
+section{padding-block:clamp(48px,8vw,96px)}
+.eyebrow{font-weight:800;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+h2{font-size:clamp(1.55rem,4.4vw,2.5rem)}
+.lead{color:var(--muted);max-width:60ch;margin-top:14px}
+.ph{border-bottom:2px dotted var(--orange);cursor:help}
+.dots{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.dots span{position:absolute;border-radius:50%}
+.rel{position:relative}
+.rel>.wrap{position:relative;z-index:1}
+
+/* header */
+header{padding-block:18px;display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:1120px;margin-inline:auto}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand-mark{width:42px;height:42px;position:relative;flex:none}
+.brand-mark i{position:absolute;border-radius:50%}
+.brand-mark i:nth-child(1){width:26px;height:26px;background:var(--yellow);left:0;top:0}
+.brand-mark i:nth-child(2){width:20px;height:20px;background:var(--red);right:0;top:6px}
+.brand-mark i:nth-child(3){width:16px;height:16px;background:var(--purple);left:12px;bottom:0}
+.brand-text{display:flex;flex-direction:column;line-height:1}
+.brand-text small{font-weight:800;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.brand-text b{font-family:var(--font-display);font-size:1.3rem;letter-spacing:.02em;margin-top:4px}
+nav{display:none;gap:26px;font-weight:700;font-size:.95rem}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--fg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 26px;border-radius:999px;font-weight:800;font-size:1rem;text-decoration:none;border:2px solid transparent;cursor:pointer;font-family:var(--font-body)}
+.btn-primary{background:var(--accent);color:var(--on-accent)}
+.btn-primary:hover{filter:brightness(1.1)}
+.btn-ghost{border-color:var(--fg);color:var(--fg);background:transparent}
+.btn-ghost:hover{background:var(--fg);color:var(--bg)}
+.btn-sm{min-height:42px;padding:0 20px;font-size:.92rem}
+
+/* hero */
+.hero{padding-block:clamp(24px,5vw,56px) clamp(48px,8vw,96px)}
+.hero-grid{display:grid;gap:36px;align-items:center}
+.hero h1{font-size:clamp(1.85rem,6.4vw,3.6rem);font-weight:700}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--yellow) 62%,var(--yellow) 92%,transparent 92%)}
+.hero p.sub{font-size:1.15rem;color:var(--muted);margin-top:20px;max-width:46ch}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;padding:0;list-style:none}
+.chips li{display:flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:var(--surface);border:1.5px solid var(--line);font-weight:700;font-size:.92rem}
+.chips .star{color:var(--orange)}
+.chips .live{width:10px;height:10px;border-radius:50%;background:#2E9E57;box-shadow:0 0 0 4px rgba(46,158,87,.2)}
+.room{width:100%;max-width:460px;justify-self:center;aspect-ratio:460/500}
+.room svg{width:100%;height:100%;display:block;filter:drop-shadow(0 18px 30px rgba(23,82,92,.18))}
+
+/* why */
+.why-grid{display:grid;gap:14px;margin-top:36px}
+.panel{position:relative;overflow:hidden;border-radius:28px;padding:28px 26px 30px;min-height:190px}
+.panel h3{font-size:1.15rem;margin-bottom:10px;position:relative;z-index:1}
+.panel p{position:relative;z-index:1;max-width:36ch}
+.panel::after{content:"";position:absolute;right:-26px;top:-26px;width:104px;height:104px;border-radius:50%;background:currentColor;opacity:.16}
+.panel::before{content:"";position:absolute;right:46px;top:64px;width:34px;height:34px;border-radius:50%;background:currentColor;opacity:.12}
+.p-yellow{background:var(--yellow);color:var(--on-yellow)}
+.p-teal{background:var(--teal);color:var(--on-dark)}
+.p-red{background:var(--red);color:var(--on-dark)}
+.p-purple{background:var(--purple);color:var(--on-dark)}
+
+/* day */
+.day-band{background:var(--surface);border-block:1.5px solid var(--line)}
+.day-layout{display:grid;gap:32px}
+.day{display:flex;flex-direction:column;gap:6px}
+.seg{border-radius:20px;padding:16px 18px;min-height:calc(var(--m) * 1.1px + 48px);display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;align-items:start;min-width:0}
+.seg time{font-weight:800;font-size:.8rem;letter-spacing:.02em;font-variant-numeric:tabular-nums;opacity:.9;padding-top:3px;white-space:nowrap}
+.seg b{display:block;font-family:var(--font-display);font-weight:500;font-size:.95rem;line-height:1.25;overflow-wrap:break-word}
+.seg p{font-size:.92rem;line-height:1.45;margin-top:6px;opacity:.92}
+.s1{background:var(--yellow);color:var(--on-yellow)}
+.s2{background:var(--teal);color:var(--on-dark)}
+.s3{background:var(--orange);color:var(--on-orange)}
+.s4{background:var(--purple);color:var(--on-dark)}
+.s5{background:var(--red);color:var(--on-dark)}
+.s6{background:var(--pink);color:var(--on-pink)}
+.day-note{margin-top:16px;font-size:.9rem;color:var(--muted)}
+
+/* space */
+.space-grid{display:grid;gap:14px;margin-top:36px}
+figure{margin:0}
+.tile{border-radius:28px;overflow:hidden;aspect-ratio:4/3.3}
+.tile svg{width:100%;height:100%;display:block}
+figcaption{margin-top:10px;font-weight:700;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+figcaption span{font-weight:600;color:var(--muted);font-size:.85rem}
+
+/* reviews */
+.rev{display:grid;gap:18px;margin-top:36px}
+.score{background:var(--yellow);color:var(--on-yellow);border-radius:28px;padding:30px 28px;display:flex;flex-direction:column;gap:8px}
+.score .big{font-family:var(--font-display);font-weight:700;font-size:clamp(3.4rem,12vw,5rem);line-height:1}
+.score .stars{font-size:1.6rem;letter-spacing:.12em}
+.score a{font-weight:800;margin-top:10px}
+.quote{background:var(--surface);border:1.5px dashed var(--line);border-radius:28px;padding:28px;display:flex;flex-direction:column;gap:12px;justify-content:center}
+.quote p{font-size:1.1rem}
+.quote small{color:var(--muted);font-weight:600}
+
+/* book + contact */
+.book-band{background:var(--teal);color:var(--on-dark)}
+.book-band .eyebrow{color:rgba(255,255,255,.7)}
+.book-band .lead{color:rgba(255,255,255,.82)}
+.book-grid{display:grid;gap:32px}
+form{display:grid;gap:14px;background:var(--surface);color:var(--fg);border-radius:28px;padding:26px}
+label{font-weight:800;font-size:.9rem;display:grid;gap:6px}
+input,select{font:inherit;font-weight:600;color:var(--fg);background:var(--bg);border:2px solid var(--line);border-radius:14px;min-height:50px;padding:0 14px;width:100%}
+input:focus,select:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 4px rgba(58,163,181,.25)}
+.row2{display:grid;gap:14px}
+.status{min-height:1.4em;font-weight:700;font-size:.92rem;color:var(--accent)}
+.contact-grid{display:grid;gap:14px;margin-top:36px}
+.card{background:var(--surface);border:1.5px solid var(--line);border-radius:28px;padding:26px}
+.card h3{font-size:1rem;margin-bottom:14px}
+.kv{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.kv li{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--line);padding-bottom:10px;font-variant-numeric:tabular-nums}
+.kv li:last-child{border:none;padding:0}
+.kv span{color:var(--muted)}
+.kv b{text-align:right}
+.map{border-radius:28px;overflow:hidden;position:relative;min-height:240px;background:var(--surface);border:1.5px solid var(--line)}
+.map svg{width:100%;height:100%;display:block;position:absolute;inset:0}
+.map .overlay{position:relative;z-index:1;padding:22px;display:flex;flex-direction:column;justify-content:flex-end;min-height:240px;gap:10px}
+.map .overlay .btn{align-self:flex-start}
+.tel{font-family:var(--font-display);font-size:1.25rem;font-weight:500;user-select:all}
+footer{border-top:1.5px solid var(--line);padding-block:28px 40px;color:var(--muted);font-size:.9rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;max-width:1120px;margin-inline:auto}
+
+/* mobile call bar */
+.callbar{position:fixed;left:0;right:0;bottom:0;z-index:20;display:flex;gap:10px;
+  padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  background:var(--bg);border-top:1.5px solid var(--line)}
+.callbar .btn{flex:1;min-height:48px}
+body{padding-bottom:78px}
+
+@media (min-width:640px){
+  .why-grid,.space-grid,.contact-grid{grid-template-columns:1fr 1fr}
+  .row2{grid-template-columns:1fr 1fr}
+}
+@media (min-width:860px){
+  nav{display:flex}
+  .hero-grid{grid-template-columns:1.1fr .9fr;gap:56px}
+  .day-layout{grid-template-columns:.8fr 1.2fr;gap:64px;align-items:start}
+  .day-intro{position:sticky;top:24px}
+  .rev{grid-template-columns:.8fr 1.2fr}
+  .book-grid{grid-template-columns:1fr 1fr;align-items:center;gap:64px}
+  .space-grid{grid-template-columns:repeat(3,1fr)}
+  .contact-grid{grid-template-columns:1fr 1fr 1.3fr}
+  .callbar{display:none}
+  body{padding-bottom:0}
+}
+@media (prefers-reduced-motion:no-preference){
+  .btn{transition:filter .15s,background .15s,color .15s}
+  .tile svg{transition:transform .5s}
+  .tile:hover svg{transform:scale(1.04)}
+}
+</style>
+</head>
+<body>
+<header>
+  <a class="brand" href="#top" aria-label="Занималня АНЕТО">
+    <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="brand-text"><small>Занималня</small><b>АНЕТО</b></span>
+  </a>
+  <nav aria-label="Основно меню">
+    <a href="#why">Защо АНЕТО</a>
+    <a href="#day">Денят при нас</a>
+    <a href="#space">Пространството</a>
+    <a href="#reviews">Отзиви</a>
+    <a href="#contact">Контакти</a>
+  </nav>
+  <a class="btn btn-primary btn-sm" href="#book">Запази посещение</a>
+</header>
+
+<main id="top">
+<section class="hero rel" style="padding-top:clamp(16px,4vw,40px)">
+  <div class="dots" id="dots-hero" style="opacity:.16" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Детска занималня · София</p>
+      <h1>Мястото, до което детето <em>тича</em> след училище</h1>
+      <p class="sub">Помощ с уроците, игри и творчество в светла, уютна стая. Детето е на сигурно място до 18:00, а вие приключвате деня си спокойно.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#book">Запази посещение</a>
+        <a class="btn btn-ghost" href="#contact">Обади се</a>
+      </div>
+      <ul class="chips">
+        <li><span class="live" aria-hidden="true"></span>Отворено до 18:00</li>
+        <li><span class="star" aria-hidden="true">★</span>5,0 в Google Maps</li>
+      </ul>
+    </div>
+    <div class="room">
+      <svg viewBox="0 0 460 500" role="img" aria-label="Илюстрация на ъгъл от занималнята: рафт с цветни кутии, глобус и цветни точки по стената">
+        <defs><clipPath id="rc"><rect width="460" height="500" rx="36"/></clipPath></defs>
+        <g clip-path="url(#rc)">
+          <rect width="460" height="500" fill="var(--surface)"/>
+          <rect width="160" height="500" fill="var(--yellow)"/>
+          <rect y="440" width="460" height="60" fill="var(--wood)"/>
+          <rect y="440" width="460" height="4" fill="#000" opacity=".12"/>
+          <g>
+            <circle cx="300" cy="46" r="16" fill="var(--purple)"/>
+            <circle cx="360" cy="92" r="11" fill="var(--orange)"/>
+            <circle cx="410" cy="40" r="9" fill="var(--grey)"/>
+            <circle cx="214" cy="84" r="13" fill="var(--red)"/>
+            <circle cx="428" cy="150" r="15" fill="var(--pink)"/>
+            <circle cx="190" cy="160" r="8" fill="var(--teal)"/>
+            <circle cx="92" cy="60" r="14" fill="var(--purple)"/>
+            <circle cx="50" cy="130" r="10" fill="var(--red)"/>
+            <circle cx="112" cy="190" r="12" fill="var(--orange)" opacity=".95"/>
+            <circle cx="30" cy="40" r="8" fill="var(--grey)"/>
+          </g>
+          <!-- bin unit -->
+          <rect x="16" y="246" width="132" height="194" rx="8" fill="var(--surface)"/>
+          <g>
+            <rect x="26" y="258" width="54" height="34" rx="5" fill="var(--yellow)"/><rect x="84" y="258" width="54" height="34" rx="5" fill="var(--pink)"/>
+            <rect x="26" y="300" width="54" height="34" rx="5" fill="var(--red)"/><rect x="84" y="300" width="54" height="34" rx="5" fill="var(--teal)"/>
+            <rect x="26" y="342" width="54" height="34" rx="5" fill="var(--purple)"/><rect x="84" y="342" width="54" height="34" rx="5" fill="var(--yellow)"/>
+            <rect x="26" y="384" width="54" height="34" rx="5" fill="var(--orange)"/><rect x="84" y="384" width="54" height="34" rx="5" fill="var(--red)"/>
+          </g>
+          <!-- cube shelf -->
+          <rect x="182" y="298" width="252" height="142" rx="6" fill="var(--surface)" stroke="var(--line)" stroke-width="4"/>
+          <path d="M266 298V440M350 298V440M182 369H434" stroke="var(--line)" stroke-width="4"/>
+          <rect x="196" y="318" width="10" height="48" rx="2" fill="var(--red)"/><rect x="208" y="326" width="10" height="40" rx="2" fill="var(--teal)"/><rect x="220" y="320" width="10" height="46" rx="2" fill="var(--purple)"/><rect x="232" y="330" width="10" height="36" rx="2" fill="var(--yellow)"/>
+          <rect x="364" y="386" width="52" height="46" rx="8" fill="var(--orange)"/>
+          <circle cx="226" cy="408" r="14" fill="var(--pink)"/><circle cx="256" cy="418" r="10" fill="var(--teal)"/>
+          <!-- globe -->
+          <rect x="296" y="262" width="9" height="34" fill="#222"/>
+          <ellipse cx="300.5" cy="296" rx="34" ry="7" fill="#222"/>
+          <circle cx="300" cy="206" r="58" fill="var(--globe)"/>
+          <path d="M262 190c14-14 30-10 38 2s-6 22-20 20-26 4-18-22zM312 224c14-6 26 4 22 18s-18 14-24 4-2-18 2-22zM318 168c10-8 24-6 26 6s-14 14-22 10-8-10-4-16z" fill="var(--land)"/>
+          <ellipse cx="300" cy="206" rx="22" ry="58" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="2"/>
+          <path d="M242 206H358" stroke="#fff" stroke-opacity=".25" stroke-width="2"/>
+          <path d="M262 164C284 176 316 176 338 164" stroke="#fff" stroke-opacity=".2" stroke-width="2" fill="none"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="why">
+  <div class="wrap">
+    <p class="eyebrow">Защо АНЕТО</p>
+    <h2>Малко място, голямо внимание към всяко дете</h2>
+    <p class="lead">Четири неща, които родителите търсят най-често в една занималня.</p>
+    <div class="why-grid">
+      <article class="panel p-yellow"><h3>Помощ с домашните</h3><p>Всяко дете има време и тих кът за уроците, а учителят е наблизо, когато нещо не е ясно.</p></article>
+      <article class="panel p-teal"><h3>Малки групи</h3><p>Достатъчно деца за игра и приятелства, достатъчно малко, за да не се губи никое.</p></article>
+      <article class="panel p-red"><h3>Творчество и игра</h3><p>Рисуване, конструктори, настолни игри и книги. Времето след уроците е за радост.</p></article>
+      <article class="panel p-purple"><h3>Топла, светла стая</h3><p>Цветни стени, удобни столчета и ъгълче за четене. Място, в което децата се чувстват у дома.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="day" class="day-band">
+  <div class="wrap day-layout">
+    <div class="day-intro">
+      <p class="eyebrow">Денят при нас</p>
+      <h2>Целият ден, от 8:30 до 18:00</h2>
+      <p class="lead">Така изглежда <span class="ph" title="Примерна програма. Заменя се с реалната.">примерен ден</span> в занималнята. Височината на всяко поле е пропорционална на времето.</p>
+      <p class="day-note">В събота, от 10:00 до 12:00, имаме творческо ателие и игри.</p>
+    </div>
+    <div class="day" role="list">
+      <div class="seg s1" style="--m:30" role="listitem"><time>8:30 – 9:00</time><div><b>Посрещане и закуска</b><p>Децата пристигат, оставят чантите си и закусват заедно.</p></div></div>
+      <div class="seg s2" style="--m:90" role="listitem"><time>9:00 – 10:30</time><div><b>Занимания по групи</b><p>Четене, смятане и английски в малки групи по възраст.</p></div></div>
+      <div class="seg s3" style="--m:30" role="listitem"><time>10:30 – 11:00</time><div><b>Игри навън</b><p>Свеж въздух и движение, а при лошо време подвижни игри в стаята.</p></div></div>
+      <div class="seg s4" style="--m:90" role="listitem"><time>11:00 – 12:30</time><div><b>Творческо ателие</b><p>Рисуване, апликации, моделиране и конструктори.</p></div></div>
+      <div class="seg s5" style="--m:60" role="listitem"><time>12:30 – 13:30</time><div><b>Обяд и тих час</b><p>Топъл обяд, после почивка с книга или тиха игра.</p></div></div>
+      <div class="seg s2" style="--m:90" role="listitem"><time>13:30 – 15:00</time><div><b>Домашни и уроци</b><p>Учителят помага с уроците, докато детето работи на спокойно място.</p></div></div>
+      <div class="seg s3" style="--m:60" role="listitem"><time>15:00 – 16:00</time><div><b>Игри и спорт</b><p>Подвижни и отборни игри, в които участват всички.</p></div></div>
+      <div class="seg s4" style="--m:60" role="listitem"><time>16:00 – 17:00</time><div><b>Ателие или настолни игри</b><p>Децата избират: ново творческо задание или настолна игра с приятели.</p></div></div>
+      <div class="seg s6" style="--m:60" role="listitem"><time>17:00 – 18:00</time><div><b>Четене и прибиране</b><p>Спокоен край на деня с книга, докато родителите дойдат.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="space">
+  <div class="wrap">
+    <p class="eyebrow">Пространството</p>
+    <h2>Стая, в която се иска да останеш</h2>
+    <p class="lead">Ъгълът с глобуса, масата за рисуване и палатката за четене. В готовия сайт тук стоят истинските снимки на занималнята.</p>
+    <div class="space-grid">
+      <figure>
+        <div class="tile">
+          <svg viewBox="0 0 400 330" role="img" aria-label="Илюстрация: червено столче до маса на тюркоазена стена" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="330" fill="var(--teal)"/>
+            <rect y="262" width="400" height="68" fill="var(--wood)"/>
+            <circle cx="60" cy="60" r="14" fill="var(--pink)" opacity=".9"/><circle cx="330" cy="50" r="10" fill="var(--yellow)"/><circle cx="360" cy="110" r="7" fill="var(--orange)"/><circle cx="130" cy="40" r="7" fill="#fff" opacity=".5"/>
+            <rect x="40" y="170" width="190" height="14" rx="4" fill="#fff"/><rect x="60" y="184" width="8" height="84" fill="#222"/><rect x="202" y="184" width="8" height="84" fill="#222"/>
+            <rect x="268" y="120" width="70" height="14" rx="4" fill="var(--red)"/>
+            <rect x="272" y="120" width="10" height="100" rx="3" fill="var(--red)"/><rect x="292" y="120" width="10" height="100" rx="3" fill="var(--red)"/><rect x="312" y="120" width="10" height="100" rx="3" fill="var(--red)"/>
+            <rect x="262" y="190" width="84" height="16" rx="5" fill="var(--red)"/>
+            <rect x="270" y="206" width="8" height="62" fill="#222"/><rect x="330" y="206" width="8" height="62" fill="#222"/>
+            <rect x="110" y="146" width="40" height="24" rx="3" fill="var(--yellow)"/><circle cx="190" cy="158" r="12" fill="var(--purple)"/>
+          </svg>
+        </div>
+        <figcaption>Масата за рисуване<span>място за снимка</span></figcaption>
+      </figure>
+      <figure>
+        <div class="tile">
+          <svg viewBox="0 0 400 330" role="img" aria-label="Илюстрация: зелена палатка за четене с лъвче" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="330" fill="var(--yellow)"/>
+            <path d="M0 40l50 40 50-40 50 40 50-40 50 40 50-40 50 40 50-40v20l-50 40-50-40-50 40-50-40-50 40-50-40-50 40-50-40z" fill="#fff" opacity=".35"/>
+            <rect y="270" width="400" height="60" fill="var(--wood)"/>
+            <path d="M200 70L320 270H80z" fill="#7DBB6A"/>
+            <path d="M200 70L260 270H140z" fill="#5FA14F"/>
+            <path d="M200 170c-26 0-40 22-40 50v50h80v-50c0-28-14-50-40-50z" fill="#F3EBD2"/>
+            <circle cx="200" cy="214" r="24" fill="var(--orange)"/><circle cx="200" cy="214" r="14" fill="#F6C98B"/>
+            <circle cx="193" cy="211" r="2.5" fill="#222"/><circle cx="207" cy="211" r="2.5" fill="#222"/>
+            <path d="M196 219q4 4 8 0" stroke="#222" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <circle cx="200" cy="62" r="9" fill="var(--red)"/>
+            <ellipse cx="340" cy="270" rx="44" ry="16" fill="#fff"/><path d="M296 270c0 30 20 46 44 46s44-16 44-46z" fill="#fff"/>
+            <path d="M300 282h80M302 296h76M308 308h64" stroke="#444" stroke-width="3"/>
+          </svg>
+        </div>
+        <figcaption>Палатката за четене<span>място за снимка</span></figcaption>
+      </figure>
+      <figure>
+        <div class="tile">
+          <svg viewBox="0 0 400 330" role="img" aria-label="Илюстрация: рафт с цветни кутии за игри" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="330" fill="var(--surface)"/>
+            <rect width="400" height="330" fill="var(--purple)" opacity=".08"/>
+            <circle cx="360" cy="46" r="18" fill="var(--pink)"/><circle cx="40" cy="48" r="12" fill="var(--orange)"/><circle cx="310" cy="18" r="8" fill="var(--teal)"/>
+            <rect x="50" y="70" width="300" height="220" rx="10" fill="var(--bg)" stroke="var(--line)" stroke-width="4"/>
+            <path d="M50 142H350M50 216H350M150 70V290M250 70V290" stroke="var(--line)" stroke-width="4"/>
+            <rect x="62" y="88" width="76" height="46" rx="6" fill="var(--yellow)"/><rect x="162" y="88" width="76" height="46" rx="6" fill="var(--red)"/><rect x="262" y="88" width="76" height="46" rx="6" fill="var(--teal)"/>
+            <rect x="62" y="160" width="76" height="46" rx="6" fill="var(--purple)"/><rect x="162" y="160" width="76" height="46" rx="6" fill="var(--orange)"/><rect x="262" y="160" width="76" height="46" rx="6" fill="var(--pink)"/>
+            <rect x="62" y="234" width="76" height="46" rx="6" fill="var(--red)"/><rect x="162" y="234" width="76" height="46" rx="6" fill="var(--yellow)"/><rect x="262" y="234" width="76" height="46" rx="6" fill="var(--purple)"/>
+            <circle cx="100" cy="111" r="8" fill="#fff" opacity=".6"/><circle cx="200" cy="183" r="8" fill="#fff" opacity=".6"/><circle cx="300" cy="257" r="8" fill="#fff" opacity=".6"/>
+          </svg>
+        </div>
+        <figcaption>Кутиите с игри<span>място за снимка</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="day-band">
+  <div class="wrap">
+    <p class="eyebrow">Отзиви</p>
+    <h2>Родителите ни оценяват с пет звезди</h2>
+    <div class="rev">
+      <div class="score">
+        <div class="big">5,0</div>
+        <div class="stars" aria-label="5 от 5 звезди">★★★★★</div>
+        <p>3 отзива в Google Maps</p>
+        <a href="https://maps.app.goo.gl/95913nYLrgKFFdnB9" target="_blank" rel="noopener">Прочети отзивите в Google</a>
+      </div>
+      <div class="quote">
+        <p><span class="ph" title="В готовия сайт тук се показват реалните отзиви от Google.">Тук се показват реалните отзиви на родителите</span> и всеки нов отзив в Google се появява автоматично.</p>
+        <small>Рейтингът е от профила на занималнята в Google Maps.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="book" class="book-band rel">
+  <div class="dots" id="dots-book" style="opacity:.14" aria-hidden="true"></div>
+  <div class="wrap book-grid">
+    <div>
+      <p class="eyebrow">Запази посещение</p>
+      <h2>Елате да се запознаем</h2>
+      <p class="lead">Оставете телефон и удобен час. Ще ви се обадим, ще ви покажем стаята и ще отговорим на всичко, което ви вълнува.</p>
+    </div>
+    <form id="book-form" novalidate>
+      <label for="f-name">Вашето име
+        <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Мария Иванова" required>
+      </label>
+      <label for="f-phone">Телефон
+        <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="0888 123 456" required>
+      </label>
+      <div class="row2">
+        <label for="f-age">Възраст на детето
+          <select id="f-age" name="age">
+            <option>6 – 7 години</option><option selected>7 – 9 години</option><option>9 – 11 години</option><option>11 – 13 години</option>
+          </select>
+        </label>
+        <label for="f-time">Удобен час за посещение
+          <select id="f-time" name="time">
+            <option>8:30 – 12:00</option><option>12:00 – 14:00</option><option selected>14:00 – 16:00</option><option>16:00 – 18:00</option><option>Събота, 10:00 – 12:00</option>
+          </select>
+        </label>
+      </div>
+      <button class="btn btn-primary" type="submit">Изпрати запитване</button>
+      <p class="status" id="f-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <p class="eyebrow">Контакти</p>
+    <h2>Къде да ни намерите</h2>
+    <div class="contact-grid">
+      <div class="card">
+        <h3>Работно време</h3>
+        <ul class="kv">
+          <li><span>Понеделник – петък</span><b>8:30 – 18:00</b></li>
+          <li><span>Събота</span><b>10:00 – 12:00</b></li>
+          <li><span>Неделя</span><b>почивен ден</b></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Свържете се</h3>
+        <ul class="kv">
+          <li><span>Телефон</span><b class="tel">087 898 7552</b></li>
+          <li><span>Адрес</span><b>ул. „Бели Искър“ 21, 1527 София, Център</b></li>
+        </ul>
+        <div class="cta-row"><a class="btn btn-primary btn-sm" href="tel:+359878987552">Обади се</a></div>
+      </div>
+      <div class="map">
+        <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="400" height="260" fill="var(--bg)"/>
+          <path d="M-10 70L410 40M-10 190L410 160M120-10L90 270M290-10L330 270" stroke="var(--line)" stroke-width="16" fill="none"/>
+          <path d="M-10 70L410 40M-10 190L410 160M120-10L90 270M290-10L330 270" stroke="var(--surface)" stroke-width="10" fill="none"/>
+          <rect x="140" y="80" width="60" height="50" rx="8" fill="var(--teal)" opacity=".12"/>
+          <rect x="220" y="195" width="50" height="40" rx="8" fill="var(--yellow)" opacity=".3"/>
+          <g transform="translate(205 108)"><path d="M0 0C-18-22-22-34-22-44a22 22 0 0 1 44 0c0 10-4 22-22 44z" fill="var(--red)"/><circle cy="-44" r="9" fill="#fff"/></g>
+        </svg>
+        <div class="overlay">
+          <b>Занималня АНЕТО<br>ул. „Бели Искър“ 21, София</b>
+          <a class="btn btn-ghost btn-sm" style="background:var(--surface)" href="https://maps.app.goo.gl/95913nYLrgKFFdnB9" target="_blank" rel="noopener">Отвори в Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>© 2026 Занималня АНЕТО · София</span>
+  <span>Демо страница. Точките с оранжево подчертаване са примерни данни.</span>
+</footer>
+
+<div class="callbar">
+  <a class="btn btn-ghost" href="tel:+359878987552">Обади се</a>
+  <a class="btn btn-primary" href="#book">Запази посещение</a>
+</div>
+
+<script>
+(function(){
+  function dots(el,n,seed){
+    if(!el)return;
+    var s=seed;
+    function r(){s=(s*1664525+1013904223)%4294967296;return s/4294967296}
+    var cols=['--yellow','--red','--purple','--orange','--pink','--grey'];
+    for(var i=0;i<n;i++){
+      var d=Math.round(10+r()*r()*70);
+      var sp=document.createElement('span');
+      sp.style.left=(r()*100)+'%';
+      sp.style.top=(r()*100)+'%';
+      sp.style.width=d+'px';sp.style.height=d+'px';
+      sp.style.background='var('+cols[Math.floor(r()*cols.length)]+')';
+      el.appendChild(sp);
+    }
+  }
+  dots(document.getElementById('dots-hero'),26,7);
+  dots(document.getElementById('dots-book'),22,31);
+
+  var form=document.getElementById('book-form');
+  var status=document.getElementById('f-status');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=document.getElementById('f-name').value.trim();
+    var phone=document.getElementById('f-phone').value.trim();
+    if(!name||phone.replace(/\D/g,'').length<6){
+      status.style.color='var(--red)';
+      status.textContent='Моля, въведете име и телефон, за да се свържем с вас.';
+      return;
+    }
+    status.style.color='var(--accent)';
+    status.textContent='Благодарим, '+name.split(' ')[0]+'! Демо: в готовия сайт запитването пристига директно на телефона или имейла на занималнята.';
+    form.reset();
+  });
+})();
+</script>
+</body>
+</html>
