@@ -57,7 +57,8 @@
     card:'Card: ',hidden:'Hidden card ',win:function(m){return 'Well done! You found all pairs in '+m+' moves.'},champ:'Hooray! You are a champion!',
     cheers:['Well done!','That\'s right!','Great!'],
     themeDark:'Switch to dark theme',themeLight:'Switch to light theme',
-    revMore:'Read the full review',revLess:'Show less',revTranslated:'translated from Bulgarian'
+    revMore:'Read the full review',revLess:'Show less',revTranslated:'translated from Bulgarian',
+    rvNeed:'Please write a few words in your review.',rvConsent:'Please confirm that we may publish your review.',rvDemo:'Thank you! This is a demo: on the live site your review goes to the center and appears after they read it.',rvOk:'Thank you! We received your review and will publish it after reading it.',rvSending:'Sending...',rvSubject:'New review from the website (EN)'
   }:{
     name:CONFIG.name,street:CONFIG.street,city:CONFIG.city,addrFull:CONFIG.addressFull,chip:'Център, '+CONFIG.street,
     hours:['Понеделник – петък','Събота и неделя'],closedDay:'почивен ден',
@@ -75,7 +76,8 @@
     card:'Карта: ',hidden:'Скрита карта ',win:function(m){return 'Браво! Намерихте всички двойки за '+m+' хода.'},champ:'Ура! Ти си шампион!',
     cheers:['Браво!','Точно така!','Чудесно!'],
     themeDark:'Включи тъмна тема',themeLight:'Включи светла тема',
-    revMore:'Прочети целия отзив',revLess:'Скрий',revTranslated:''
+    revMore:'Прочети целия отзив',revLess:'Скрий',revTranslated:'',
+    rvNeed:'Моля, напишете няколко думи в отзива.',rvConsent:'Моля, потвърдете, че можем да публикуваме отзива.',rvDemo:'Благодарим! Това е демо: в готовия сайт отзивът стига до занималнята и се публикува след преглед.',rvOk:'Благодарим! Получихме отзива и ще го публикуваме след преглед.',rvSending:'Изпращаме...',rvSubject:'Нов отзив от сайта'
   };
   CONFIG.hours[0].label=L.hours[0];CONFIG.hours[1].label=L.hours[1];
 
@@ -306,6 +308,28 @@
     l.addEventListener('click',function(e){var b=e.target.closest('.rtoggle');if(!b)return;
       var open=b.getAttribute('aria-expanded')!=='true';$$('.rmore',b.parentNode).forEach(function(p){p.hidden=!open});
       b.setAttribute('aria-expanded',open?'true':'false');b.textContent=open?L.revLess:L.revMore;});
+  })();
+
+  /* --- форма за отзив --- */
+  (function(){
+    var f=$('#review-form');if(!f)return;
+    var st=$('#rv-status'),b=$('#rv-btn');
+    function msg(t,bad){st.style.color=bad?'var(--red)':'var(--accent)';st.textContent=t}
+    f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var name=$('#rv-name').value.trim(),text=$('#rv-text').value.trim(),s=$('input[name=stars]:checked',f);
+      if(text.length<10){msg(L.rvNeed,true);return}
+      if(!$('#rv-consent').checked){msg(L.rvConsent,true);return}
+      if($('#rv-web').value){msg(L.rvOk,false);f.reset();return}
+      if(!CONFIG.formEndpoint){msg(L.rvDemo,false);f.reset();return}
+      var body={subject:L.rvSubject+' · '+CONFIG.name,name:name||'-',stars:s?s.value:'',review:text,publish_consent:'yes'};
+      if(CONFIG.formAccessKey)body.access_key=CONFIG.formAccessKey;
+      b.disabled=true;msg(L.rvSending,false);
+      fetch(CONFIG.formEndpoint,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)})
+        .then(function(r){if(!r.ok)throw 0;msg(L.rvOk,false);f.reset();track('review_submit',{stars:body.stars})})
+        .catch(function(){msg(L.fErr(CONFIG.phoneDisplay),true)})
+        .then(function(){b.disabled=false});
+    });
   })();
 
   /* --- бисквитки и Google Analytics --- */

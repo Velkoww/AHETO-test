@@ -232,6 +232,26 @@
       </div>
       </div>
     </div>
+    <div class="rv-wrap">
+      <div>
+        <h3 class="rv-h">Оставете отзив</h3>
+        <p class="lead">Разкажете на другите родители как е при нас. Отзивите се публикуват в сайта след преглед от занималнята.</p>
+        <p class="rv-g">Ако имате профил в Google, ще ни помогнете много и с <a data-href="maps" href="https://maps.app.goo.gl/5QMCN1awGLX9WzHA8" target="_blank" rel="noopener">отзив в Google Maps</a>.</p>
+      </div>
+      <form id="review-form" novalidate>
+        <label for="rv-name">Вашето име
+          <input id="rv-name" name="name" type="text" autocomplete="name" placeholder="Например: Мария, майка на Петър" maxlength="80" required>
+        </label>
+        <fieldset class="rv-stars"><legend>Оценка</legend><div class="rv-row"><input type="radio" id="rv-s5" name="stars" value="5" checked><label for="rv-s5" title="5 звезди"><span class="sr">5 звезди</span>★</label><input type="radio" id="rv-s4" name="stars" value="4"><label for="rv-s4" title="4 звезди"><span class="sr">4 звезди</span>★</label><input type="radio" id="rv-s3" name="stars" value="3"><label for="rv-s3" title="3 звезди"><span class="sr">3 звезди</span>★</label><input type="radio" id="rv-s2" name="stars" value="2"><label for="rv-s2" title="2 звезди"><span class="sr">2 звезди</span>★</label><input type="radio" id="rv-s1" name="stars" value="1"><label for="rv-s1" title="1 звезда"><span class="sr">1 звезда</span>★</label></div></fieldset>
+        <label for="rv-text">Вашият отзив
+          <textarea id="rv-text" name="review" rows="5" maxlength="2000" placeholder="Какво харесвате в занималнята?" required></textarea>
+        </label>
+        <input class="hp" id="rv-web" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="consent" for="rv-consent"><input id="rv-consent" type="checkbox" required><span>Съгласен/а съм отзивът ми да бъде публикуван в сайта с посоченото име.</span></label>
+        <button class="btn btn-primary" id="rv-btn" type="submit">Изпрати отзив</button>
+        <p class="status" id="rv-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -283,7 +303,7 @@
     <details id="privacy">
       <summary>Политика за поверителност</summary>
       <div>
-        <p><b>Какви данни събираме.</b> Име и телефон на родител, възраст на детето и удобен час за посещение. Само ако ги въведете във формата за запитване.</p>
+        <p><b>Какви данни събираме.</b> Име и телефон на родител, възраст на детето и удобен час за посещение. Само ако ги въведете във формата за запитване. Ако оставите отзив: името, което посочите, оценката и текста. Публикуваме отзива само с вашето съгласие.</p>
         <p><b>Защо.</b> За да се свържем с вас и да уговорим посещение. Не ги използваме за друго и не ги предоставяме на други хора или фирми, освен на изброените по-долу.</p>
         <p><b>Кой има достъп до данните.</b> Освен занималнята: Денис Велков, който поддържа сайта и има достъп до запитванията и статистиката, за да осигурява работата му; Web3Forms, услугата, която доставя запитванията от формата; Google Ireland Limited, само ако разрешите Google Analytics; Cloudflare, където се намира сайтът. Те използват данните само за тези цели.</p>
         <p><b>Колко време ги пазим.</b> До 12 месеца или докато поискате да ги изтрием.</p>

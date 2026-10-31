@@ -232,6 +232,26 @@
       </div>
       </div>
     </div>
+    <div class="rv-wrap">
+      <div>
+        <h3 class="rv-h">Leave a review</h3>
+        <p class="lead">Tell other parents what it is like here. Reviews appear on the site after the center has read them.</p>
+        <p class="rv-g">If you have a Google account, a <a data-href="maps" href="https://maps.app.goo.gl/5QMCN1awGLX9WzHA8" target="_blank" rel="noopener">review on Google Maps</a> helps us a lot too.</p>
+      </div>
+      <form id="review-form" novalidate>
+        <label for="rv-name">Your name
+          <input id="rv-name" name="name" type="text" autocomplete="name" placeholder="For example: Maria, Peter's mum" maxlength="80" required>
+        </label>
+        <fieldset class="rv-stars"><legend>Rating</legend><div class="rv-row"><input type="radio" id="rv-s5" name="stars" value="5" checked><label for="rv-s5" title="5 stars"><span class="sr">5 stars</span>★</label><input type="radio" id="rv-s4" name="stars" value="4"><label for="rv-s4" title="4 stars"><span class="sr">4 stars</span>★</label><input type="radio" id="rv-s3" name="stars" value="3"><label for="rv-s3" title="3 stars"><span class="sr">3 stars</span>★</label><input type="radio" id="rv-s2" name="stars" value="2"><label for="rv-s2" title="2 stars"><span class="sr">2 stars</span>★</label><input type="radio" id="rv-s1" name="stars" value="1"><label for="rv-s1" title="1 star"><span class="sr">1 star</span>★</label></div></fieldset>
+        <label for="rv-text">Your review
+          <textarea id="rv-text" name="review" rows="5" maxlength="2000" placeholder="What do you like about the center?" required></textarea>
+        </label>
+        <input class="hp" id="rv-web" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <label class="consent" for="rv-consent"><input id="rv-consent" type="checkbox" required><span>I agree that my review may be published on the site under the name given.</span></label>
+        <button class="btn btn-primary" id="rv-btn" type="submit">Send review</button>
+        <p class="status" id="rv-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -283,7 +303,7 @@
     <details id="privacy">
       <summary>Privacy policy</summary>
       <div>
-        <p><b>What data we collect.</b> A parent's name and phone number, the child's age and a convenient time to visit. Only if you enter them in the enquiry form.</p>
+        <p><b>What data we collect.</b> A parent's name and phone number, the child's age and a convenient time to visit. Only if you enter them in the enquiry form. If you leave a review: the name you give, your rating and your text. We publish a review only with your consent.</p>
         <p><b>Why.</b> To contact you and arrange a visit. We do not use it for anything else and do not share it with anyone except those listed below.</p>
         <p><b>Who has access to the data.</b> Besides the center: Denis Velkov, who maintains the website and has access to enquiries and statistics in order to keep it running; Web3Forms, the service that delivers enquiries from the form; Google Ireland Limited, only if you allow Google Analytics; Cloudflare, which hosts the website. They use the data only for these purposes.</p>
         <p><b>How long we keep it.</b> Up to 12 months, or until you ask us to delete it.</p>
