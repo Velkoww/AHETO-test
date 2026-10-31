@@ -634,10 +634,11 @@ textarea{font:inherit;font-weight:600;color:var(--fg);background:var(--bg);borde
 textarea:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 4px rgba(58,163,181,.25)}
 .rv-stars{border:0;margin:0;padding:0;min-width:0}
 .rv-stars legend{font-weight:800;font-size:.9rem;padding:0;margin-bottom:6px}
-.rv-row{display:inline-flex;flex-direction:row-reverse;gap:4px}
-.rv-row input{position:absolute;opacity:0;width:1px;height:1px}
-.rv-row label{display:block;font-size:2rem;line-height:1;color:var(--line);cursor:pointer;padding:2px;font-weight:400}
+.rv-row{position:relative;display:inline-flex;flex-direction:row-reverse;gap:4px}
+.rv-row input{position:absolute;left:0;top:0;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
+.rv-row label{display:block;touch-action:manipulation;-webkit-tap-highlight-color:transparent;font-size:2rem;line-height:1;color:var(--line);cursor:pointer;padding:2px;font-weight:400}
 .rv-row input:checked~label,.rv-row label:hover,.rv-row label:hover~label{color:var(--orange)}
 .rv-row input:focus-visible+label{outline:3px solid var(--orange);outline-offset:2px;border-radius:6px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (min-width:860px){.rv-wrap{grid-template-columns:.8fr 1.2fr;gap:40px;align-items:start}}
+@media (hover:none){.rv-row label:hover,.rv-row label:hover~label{color:var(--line)}.rv-row input:checked~label{color:var(--orange)}}

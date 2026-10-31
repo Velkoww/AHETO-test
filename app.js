@@ -315,6 +315,8 @@
   (function(){
     var f=$('#review-form');if(!f)return;
     var st=$('#rv-status'),b=$('#rv-btn');
+    /* звездите: при докосване маркираме точно избраната (някои телефони хващат съседното скрито поле) */
+    $$('.rv-row label',f).forEach(function(lb){lb.addEventListener('click',function(e){e.preventDefault();var i=$('#'+lb.getAttribute('for'));if(i){i.checked=true;i.dispatchEvent(new Event('change',{bubbles:true}))}})});
     function msg(t,bad){st.style.color=bad?'var(--red)':'var(--accent)';st.textContent=t}
     f.addEventListener('submit',function(e){
       e.preventDefault();
