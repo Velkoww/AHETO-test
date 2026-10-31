@@ -19,7 +19,7 @@
     postalCode:'1527',
     city:'София',
     addressFull:'ул. „Бели Искър“ 21, 1527 София, Център',
-    mapsUrl:'https://maps.app.goo.gl/95913nYLrgKFFdnB9',
+    mapsUrl:'https://maps.app.goo.gl/5QMCN1awGLX9WzHA8',
     timezone:'Europe/Sofia',
     hours:[
       {label:'Понеделник – петък',days:[1,2,3,4,5],open:'11:00',close:'18:00'},
