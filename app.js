@@ -59,7 +59,7 @@
     card:'Card: ',hidden:'Hidden card ',win:function(m){return 'Well done! You found all pairs in '+m+' moves.'},champ:'Hooray! You are a champion!',
     cheers:['Well done!','That\'s right!','Great!'],
     themeDark:'Switch to dark theme',themeLight:'Switch to light theme',
-    revMore:'Read the full review',revLess:'Show less',revTranslated:'translated from Bulgarian',srcSite:'review on this website',
+    revMore:'Read the full review',revLess:'Show less',revTranslated:'translated from Bulgarian',srcSite:'review on this website',toTop:'Back to top',
     rvNeed:'Please write a few words in your review.',rvConsent:'Please confirm that we may publish your review.',rvDemo:'Thank you! This is a demo: on the live site your review goes to the center and appears after they read it.',rvOk:'Thank you! We received your review and will publish it after reading it.',rvSending:'Sending...',rvSubject:'New review from the website (EN)'
   }:{
     name:CONFIG.name,street:CONFIG.street,city:CONFIG.city,addrFull:CONFIG.addressFull,chip:'Център, '+CONFIG.street,
@@ -78,7 +78,7 @@
     card:'Карта: ',hidden:'Скрита карта ',win:function(m){return 'Браво! Намерихте всички двойки за '+m+' хода.'},champ:'Ура! Ти си шампион!',
     cheers:['Браво!','Точно така!','Чудесно!'],
     themeDark:'Включи тъмна тема',themeLight:'Включи светла тема',
-    revMore:'Прочети целия отзив',revLess:'Скрий',revTranslated:'',srcSite:'отзив от сайта',
+    revMore:'Прочети целия отзив',revLess:'Скрий',revTranslated:'',srcSite:'отзив от сайта',toTop:'Към началото на страницата',
     rvNeed:'Моля, напишете няколко думи в отзива.',rvConsent:'Моля, потвърдете, че можем да публикуваме отзива.',rvDemo:'Благодарим! Това е демо: в готовия сайт отзивът стига до занималнята и се публикува след преглед.',rvOk:'Благодарим! Получихме отзива и ще го публикуваме след преглед.',rvSending:'Изпращаме...',rvSubject:'Нов отзив от сайта'
   };
   CONFIG.hours[0].label=L.hours[0];CONFIG.hours[1].label=L.hours[1];
@@ -458,6 +458,21 @@
       if(best)sc.scrollBy({left:best.left+best.width/2-c,behavior:motionOK?'smooth':'auto'});
     }});
     sc.addEventListener('click',function(e){if(moved){e.preventDefault();e.stopPropagation();moved=false}},true);
+  })();
+
+  /* --- бутон „нагоре“ --- */
+  (function(){
+    var b=document.createElement('button');b.type='button';b.className='totop';b.setAttribute('aria-label',L.toTop);b.title=L.toTop;
+    b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V6M5.5 11.5L12 5l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    document.body.appendChild(b);
+    var shown=false,tk=false;
+    function upd(){tk=false;var on=window.scrollY>Math.max(600,innerHeight*0.9);if(on!==shown){shown=on;b.classList.toggle('show',on)}}
+    window.addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(upd)}},{passive:true});upd();
+    b.addEventListener('click',function(){
+      window.scrollTo({top:0,behavior:motionOK?'smooth':'auto'});
+      var t=$('#main');if(t){t.setAttribute('tabindex','-1');setTimeout(function(){t.focus({preventScroll:true})},motionOK?500:0)}
+      track('back_to_top');
+    });
   })();
 
   /* --- талисман Точко --- */

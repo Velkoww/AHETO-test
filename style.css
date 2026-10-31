@@ -642,3 +642,16 @@ textarea:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 4px rgba
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 @media (min-width:860px){.rv-wrap{grid-template-columns:.8fr 1.2fr;gap:40px;align-items:start}}
 @media (hover:none){.rv-row label:hover,.rv-row label:hover~label{color:var(--line)}.rv-row input:checked~label{color:var(--orange)}}
+
+/* бутон „нагоре“ */
+.totop{position:fixed;z-index:25;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(86px + env(safe-area-inset-bottom,0px));width:50px;height:50px;border-radius:50%;
+  border:0;background:var(--accent);color:var(--on-accent);display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 22px -8px rgba(0,0,0,.45);
+  opacity:0;visibility:hidden;transform:translateY(14px) scale(.9);transition:opacity .25s,transform .25s,visibility 0s .25s}
+.totop.show{opacity:1;visibility:visible;transform:none;transition:opacity .25s,transform .25s cubic-bezier(.3,1.6,.5,1)}
+.totop svg{width:24px;height:24px}
+.totop:hover{filter:brightness(1.1)}
+.totop:hover svg{animation:totop-hop .5s ease}
+@keyframes totop-hop{40%{transform:translateY(-4px)}}
+.totop::after{content:"";position:absolute;inset:-4px;border-radius:50%;border:2px dashed var(--yellow);opacity:.8}
+@media (min-width:1024px){.totop{bottom:24px;right:24px}}
+@media (prefers-reduced-motion:reduce){.totop,.totop.show{transition:none}.totop:hover svg{animation:none}}
