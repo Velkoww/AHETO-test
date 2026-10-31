@@ -8,7 +8,7 @@
 1. Създайте хранилище в GitHub и качете всички файлове в основната папка (без подпапка).
 2. Settings > Pages > Source: Deploy from a branch > main > / (root).
 3. След минута сайтът е на https://ИМЕ.github.io/ХРАНИЛИЩЕ/ (или на собствен домейн през Pages > Custom domain).
-4. Заменете YOUR-DOMAIN във всички .html файлове (og:image), robots.txt и sitemap.xml с реалния адрес.
+4. Адресът aneto.bg вече е вписан в страниците, robots.txt и sitemap.xml. Когато домейнът е регистриран: в Settings > Pages > Custom domain впишете aneto.bg и настройте DNS записите при регистратора.
 
 ## Какво се сменя, когато клиентът даде данни
 Почти всичко е в блока CONFIG в началото на app.js (една промяна се отразява на всички страници):
