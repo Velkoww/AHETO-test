@@ -618,3 +618,4 @@ nav#site-nav a,.btn,.brand-text small{white-space:nowrap}
 .line-ctl .btn{margin-left:auto}
 @media (max-width:520px){.line-ctl .btn{margin-left:0;width:100%}}
 .gal-page{padding-top:clamp(20px,4vw,40px)}
+.credit{color:inherit;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}.credit:hover{color:var(--fg);text-decoration-color:currentColor}
