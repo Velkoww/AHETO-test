@@ -31,8 +31,8 @@
        text:"Ани се грижи за дъщеря ни през по-голямата част от 2021 г.\nМира се привърза към нея  още през първата седмица. - спокойствието и дискретното чувство за хумор на Ани бързо ни вдъхнаха доверие, а дъщеря ни изпитваше искрена радост при всяко нейно появяване.\nНякак Ани намира фината зона на комуникация, в която се държи с нея като с дете, без да я лигави или подценява.\nЗа времето заедно Мира напредна страшно много - започна да общува и говори много добре за възрастта си и да се заиграва с другите деца.\nНещо уникално при Ани - може би това, кеото ни привлече най-силно в началото - е богатият ѝ опит в сферата на изкуството и превеждането му на детски език. Въпреки, че произведенията на дъщеря ни все още приличат на работите на Пикасо от късния му период :)) виждаме, че вече ѝ е интересно да рисува и често търси четката.\nСъс съпругата ми се занимаваме с дизайн - докато избирахме занималня бяхме потресени от пластмасовите и грозни интериори на почти всички ясли и детски градини, които оглеждахме. Ние не искаме детето ни да расте в такава среда. Ани се е погрижила нейното място да е светло и ведро. Дизайнът е приятен и детски без да подценява интелекта на малките обитатели.\nС голямо доверие и радост изпращаме Мира в занималня \"Ането\" всяка сутрин и желаем успех на създателите ѝ!",
        text_en:"Ani looked after our daughter for most of 2021.\nMira grew attached to her in the very first week. Ani's calm and her quiet sense of humour quickly won our trust, and our daughter was genuinely happy every time she appeared.\nSomehow Ani finds that delicate way of communicating where she treats her as a child without babying her or underestimating her.\nDuring their time together Mira made huge progress: she began to communicate and speak very well for her age and to play with the other children.\nSomething unique about Ani, and perhaps what drew us most at the start, is her rich experience in art and her way of translating it into a child's language. Although our daughter's works still look like late-period Picasso :)) we can see she now enjoys drawing and often reaches for the brush.\nMy wife and I work in design. While choosing a playroom we were shocked by the plastic, ugly interiors of almost every nursery and kindergarten we visited. We don't want our child to grow up in that kind of environment. Ani has made sure her place is bright and cheerful. The design is pleasant and child-friendly without underestimating the intelligence of its little residents.\nWe send Mira to ANETO every morning with great trust and joy, and we wish its founders every success!"}
     ],
-    formEndpoint:'',      /* напр. https://api.web3forms.com/submit или https://formspree.io/f/xxxx */
-    formAccessKey:'',     /* само за Web3Forms */
+    formEndpoint:'https://api.web3forms.com/submit',      /* напр. https://api.web3forms.com/submit или https://formspree.io/f/xxxx */
+    formAccessKey:'dac67824-00c5-4ad1-b99f-0a71e85b9a24',     /* само за Web3Forms */
     photos:[]             /* напр. [{src:'photos/1.jpg',alt:'Стаята за игри',caption:'Стаята за игри'}] */
   };
   /* ========================================= */
@@ -283,7 +283,7 @@
     if(!CONFIG.formEndpoint){
       formMsg(L.fDemo(first),false);form.reset();return;
     }
-    var body={name:name,phone:phone,age:$('#f-age').value,time:$('#f-time').value,subject:L.subject+CONFIG.name+(EN?' (EN)':'')};
+    var body={subject:L.subject+CONFIG.name+(EN?' (EN)':''),from_name:'Сайт АНЕТО','Име':name,'Телефон':phone,'Възраст на детето':$('#f-age').value,'Удобен час':$('#f-time').value,'Език на сайта':EN?'английски':'български'};
     if(CONFIG.formAccessKey)body.access_key=CONFIG.formAccessKey;
     btn.disabled=true;formMsg(L.fSending,false);
     fetch(CONFIG.formEndpoint,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)})
@@ -322,7 +322,7 @@
       if(!$('#rv-consent').checked){msg(L.rvConsent,true);return}
       if($('#rv-web').value){msg(L.rvOk,false);f.reset();return}
       if(!CONFIG.formEndpoint){msg(L.rvDemo,false);f.reset();return}
-      var body={subject:L.rvSubject+' · '+CONFIG.name,name:name||'-',stars:s?s.value:'',review:text,publish_consent:'yes'};
+      var body={subject:L.rvSubject+' · '+CONFIG.name,from_name:'Сайт АНЕТО','Име':name||'-','Оценка':(s?s.value:'?')+' от 5','Отзив':text,'Съгласие за публикуване':'да','Език на сайта':EN?'английски':'български'};
       if(CONFIG.formAccessKey)body.access_key=CONFIG.formAccessKey;
       b.disabled=true;msg(L.rvSending,false);
       fetch(CONFIG.formEndpoint,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)})
