@@ -27,13 +27,14 @@
     ],
     gaId:'',              /* Google Analytics 4, напр. 'G-ABC123XYZ0'. Зарежда се само след съгласие. */
     reviews:[            /* {name, text, text_en (превод за английската версия), stars, when}. Редовете в text стават отделни абзаци. */
-      {name:'Родител',name_en:'A parent',stars:5,when:'',
+      {name:'Родител',name_en:'A parent',stars:5,when:'',source:'google',
        text:"Ани се грижи за дъщеря ни през по-голямата част от 2021 г.\nМира се привърза към нея  още през първата седмица. - спокойствието и дискретното чувство за хумор на Ани бързо ни вдъхнаха доверие, а дъщеря ни изпитваше искрена радост при всяко нейно появяване.\nНякак Ани намира фината зона на комуникация, в която се държи с нея като с дете, без да я лигави или подценява.\nЗа времето заедно Мира напредна страшно много - започна да общува и говори много добре за възрастта си и да се заиграва с другите деца.\nНещо уникално при Ани - може би това, кеото ни привлече най-силно в началото - е богатият ѝ опит в сферата на изкуството и превеждането му на детски език. Въпреки, че произведенията на дъщеря ни все още приличат на работите на Пикасо от късния му период :)) виждаме, че вече ѝ е интересно да рисува и често търси четката.\nСъс съпругата ми се занимаваме с дизайн - докато избирахме занималня бяхме потресени от пластмасовите и грозни интериори на почти всички ясли и детски градини, които оглеждахме. Ние не искаме детето ни да расте в такава среда. Ани се е погрижила нейното място да е светло и ведро. Дизайнът е приятен и детски без да подценява интелекта на малките обитатели.\nС голямо доверие и радост изпращаме Мира в занималня \"Ането\" всяка сутрин и желаем успех на създателите ѝ!",
        text_en:"Ani looked after our daughter for most of 2021.\nMira grew attached to her in the very first week. Ani's calm and her quiet sense of humour quickly won our trust, and our daughter was genuinely happy every time she appeared.\nSomehow Ani finds that delicate way of communicating where she treats her as a child without babying her or underestimating her.\nDuring their time together Mira made huge progress: she began to communicate and speak very well for her age and to play with the other children.\nSomething unique about Ani, and perhaps what drew us most at the start, is her rich experience in art and her way of translating it into a child's language. Although our daughter's works still look like late-period Picasso :)) we can see she now enjoys drawing and often reaches for the brush.\nMy wife and I work in design. While choosing a playroom we were shocked by the plastic, ugly interiors of almost every nursery and kindergarten we visited. We don't want our child to grow up in that kind of environment. Ani has made sure her place is bright and cheerful. The design is pleasant and child-friendly without underestimating the intelligence of its little residents.\nWe send Mira to ANETO every morning with great trust and joy, and we wish its founders every success!"}
     ],
     formEndpoint:'https://api.web3forms.com/submit',      /* напр. https://api.web3forms.com/submit или https://formspree.io/f/xxxx */
     formAccessKey:'dac67824-00c5-4ad1-b99f-0a71e85b9a24',     /* Web3Forms ключ за запитванията (получател: занималнята) */
     reviewAccessKey:'9acc219e-300e-489c-82c1-65ed1973d5fa',  /* Web3Forms ключ за отзивите (получател: поддръжката на сайта) */
+    reviewsApi:'',        /* адресът на Google Apps Script (Web app URL). Когато е попълнен, отзивите се записват в Google таблицата и одобрените излизат сами. */
     photos:[]             /* напр. [{src:'photos/1.jpg',alt:'Стаята за игри',caption:'Стаята за игри'}] */
   };
   /* ========================================= */
@@ -58,7 +59,7 @@
     card:'Card: ',hidden:'Hidden card ',win:function(m){return 'Well done! You found all pairs in '+m+' moves.'},champ:'Hooray! You are a champion!',
     cheers:['Well done!','That\'s right!','Great!'],
     themeDark:'Switch to dark theme',themeLight:'Switch to light theme',
-    revMore:'Read the full review',revLess:'Show less',revTranslated:'translated from Bulgarian',
+    revMore:'Read the full review',revLess:'Show less',revTranslated:'translated from Bulgarian',srcSite:'review on this website',
     rvNeed:'Please write a few words in your review.',rvConsent:'Please confirm that we may publish your review.',rvDemo:'Thank you! This is a demo: on the live site your review goes to the center and appears after they read it.',rvOk:'Thank you! We received your review and will publish it after reading it.',rvSending:'Sending...',rvSubject:'New review from the website (EN)'
   }:{
     name:CONFIG.name,street:CONFIG.street,city:CONFIG.city,addrFull:CONFIG.addressFull,chip:'Център, '+CONFIG.street,
@@ -77,7 +78,7 @@
     card:'Карта: ',hidden:'Скрита карта ',win:function(m){return 'Браво! Намерихте всички двойки за '+m+' хода.'},champ:'Ура! Ти си шампион!',
     cheers:['Браво!','Точно така!','Чудесно!'],
     themeDark:'Включи тъмна тема',themeLight:'Включи светла тема',
-    revMore:'Прочети целия отзив',revLess:'Скрий',revTranslated:'',
+    revMore:'Прочети целия отзив',revLess:'Скрий',revTranslated:'',srcSite:'отзив от сайта',
     rvNeed:'Моля, напишете няколко думи в отзива.',rvConsent:'Моля, потвърдете, че можем да публикуваме отзива.',rvDemo:'Благодарим! Това е демо: в готовия сайт отзивът стига до занималнята и се публикува след преглед.',rvOk:'Благодарим! Получихме отзива и ще го публикуваме след преглед.',rvSending:'Изпращаме...',rvSubject:'Нов отзив от сайта'
   };
   CONFIG.hours[0].label=L.hours[0];CONFIG.hours[1].label=L.hours[1];
@@ -294,18 +295,31 @@
   });
 
 
-  /* --- отзиви от CONFIG --- */
+  /* --- отзиви: от CONFIG и одобрените от Google таблицата --- */
   (function(){
-    var l=$('#rev-list');if(!l||!CONFIG.reviews||!CONFIG.reviews.length)return;
-    l.innerHTML=CONFIG.reviews.map(function(r){
-      var n=Math.max(1,Math.min(5,r.stars||5)),s='';for(var i=0;i<n;i++)s+='★';
-      var txt=(EN&&r.text_en)?r.text_en:r.text,paras=String(txt).split(/\n+/).filter(Boolean),long=paras.length>2;
-      var body=paras.map(function(p,i){return '<p'+(long&&i>1?' class="rmore" hidden':'')+'>'+esc(p)+'</p>'}).join('');
-      var who=(EN&&r.name_en)?r.name_en:r.name;
+    var l=$('#rev-list');if(!l)return;
+    function card(r){
+      var n=Math.max(1,Math.min(5,+r.stars||5)),s='';for(var i=0;i<n;i++)s+='★';
+      var txt=(EN&&r.text_en)?r.text_en:r.text,paras=String(txt||'').split(/\n+/).filter(Boolean),long=paras.length>2||String(txt||'').length>420;
+      if(!paras.length)return '';
+      var body=paras.map(function(p,i){return '<p'+(long&&i>(paras.length>2?1:0)&&paras.length>1?' class="rmore" hidden':'')+'>'+esc(p)+'</p>'}).join('');
+      if(paras.length<2)long=false;
+      var who=(EN&&r.name_en)?r.name_en:(r.name||'');
+      var src=r.source==='google'?'Google':L.srcSite;
+      var tr=(EN&&r.text_en&&r.lang!=='en'&&r.text_en!==r.text)?' · '+L.revTranslated:'';
       return '<article class="rcard"><div class="rstars" aria-label="'+n+L.stars+'">'+s+'</div><div class="rtext">'+body+'</div>'+
         (long?'<button class="rtoggle" type="button" aria-expanded="false">'+L.revMore+'</button>':'')+
-        '<footer><b>'+esc(who)+'</b><span>Google'+(r.when?' · '+esc(r.when):'')+(EN&&r.text_en?' · '+L.revTranslated:'')+'</span></footer></article>';
-    }).join('');
+        '<footer><b>'+esc(who)+'</b><span>'+src+(r.when?' · '+esc(r.when):'')+tr+'</span></footer></article>';
+    }
+    function render(list){var h=list.map(card).join('');if(h)l.innerHTML=h}
+    var base=(CONFIG.reviews||[]).slice();
+    if(base.length)render(base);
+    if(CONFIG.reviewsApi){
+      fetch(CONFIG.reviewsApi+(CONFIG.reviewsApi.indexOf('?')>-1?'&':'?')+'list=1')
+        .then(function(r){return r.json()})
+        .then(function(d){if(d&&d.reviews&&d.reviews.length)render(d.reviews.concat(base))})
+        .catch(function(){});
+    }
     l.addEventListener('click',function(e){var b=e.target.closest('.rtoggle');if(!b)return;
       var open=b.getAttribute('aria-expanded')!=='true';$$('.rmore',b.parentNode).forEach(function(p){p.hidden=!open});
       b.setAttribute('aria-expanded',open?'true':'false');b.textContent=open?L.revLess:L.revMore;});
@@ -324,6 +338,16 @@
       if(text.length<10){msg(L.rvNeed,true);return}
       if(!$('#rv-consent').checked){msg(L.rvConsent,true);return}
       if($('#rv-web').value){msg(L.rvOk,false);f.reset();return}
+      if(CONFIG.reviewsApi){
+        b.disabled=true;msg(L.rvSending,false);
+        fetch(CONFIG.reviewsApi,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},
+          body:JSON.stringify({name:name||'',stars:s?+s.value:5,text:text,lang:EN?'en':'bg',consent:true,website:$('#rv-web').value})})
+          .then(function(r){return r.json()})
+          .then(function(d){if(!d||!d.ok)throw 0;msg(L.rvOk,false);f.reset();track('review_submit',{stars:s?s.value:''})})
+          .catch(function(){msg(L.fErr(CONFIG.phoneDisplay),true)})
+          .then(function(){b.disabled=false});
+        return;
+      }
       if(!CONFIG.formEndpoint){msg(L.rvDemo,false);f.reset();return}
       var body={subject:L.rvSubject+' · '+CONFIG.name,from_name:'Сайт АНЕТО','Име':name||'-','Оценка':(s?s.value:'?')+' от 5','Отзив':text,'Съгласие за публикуване':'да','Език на сайта':EN?'английски':'български'};
       body.access_key=CONFIG.reviewAccessKey||CONFIG.formAccessKey;
