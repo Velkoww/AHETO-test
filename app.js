@@ -26,7 +26,11 @@
       {label:'Събота и неделя',days:[6,0],closed:true}
     ],
     gaId:'',              /* Google Analytics 4, напр. 'G-ABC123XYZ0'. Зарежда се само след съгласие. */
-    reviews:[],           /* [{name:'Име',text:'Текст на отзива',stars:5,when:'преди 2 години'}] */
+    reviews:[            /* {name, text, text_en (превод за английската версия), stars, when}. Редовете в text стават отделни абзаци. */
+      {name:'Родител',name_en:'A parent',stars:5,when:'',
+       text:"Ани се грижи за дъщеря ни през по-голямата част от 2021 г.\nМира се привърза към нея  още през първата седмица. - спокойствието и дискретното чувство за хумор на Ани бързо ни вдъхнаха доверие, а дъщеря ни изпитваше искрена радост при всяко нейно появяване.\nНякак Ани намира фината зона на комуникация, в която се държи с нея като с дете, без да я лигави или подценява.\nЗа времето заедно Мира напредна страшно много - започна да общува и говори много добре за възрастта си и да се заиграва с другите деца.\nНещо уникално при Ани - може би това, кеото ни привлече най-силно в началото - е богатият ѝ опит в сферата на изкуството и превеждането му на детски език. Въпреки, че произведенията на дъщеря ни все още приличат на работите на Пикасо от късния му период :)) виждаме, че вече ѝ е интересно да рисува и често търси четката.\nСъс съпругата ми се занимаваме с дизайн - докато избирахме занималня бяхме потресени от пластмасовите и грозни интериори на почти всички ясли и детски градини, които оглеждахме. Ние не искаме детето ни да расте в такава среда. Ани се е погрижила нейното място да е светло и ведро. Дизайнът е приятен и детски без да подценява интелекта на малките обитатели.\nС голямо доверие и радост изпращаме Мира в занималня \"Ането\" всяка сутрин и желаем успех на създателите ѝ!",
+       text_en:"Ani looked after our daughter for most of 2021.\nMira grew attached to her in the very first week. Ani's calm and her quiet sense of humour quickly won our trust, and our daughter was genuinely happy every time she appeared.\nSomehow Ani finds that delicate way of communicating where she treats her as a child without babying her or underestimating her.\nDuring their time together Mira made huge progress: she began to communicate and speak very well for her age and to play with the other children.\nSomething unique about Ani, and perhaps what drew us most at the start, is her rich experience in art and her way of translating it into a child's language. Although our daughter's works still look like late-period Picasso :)) we can see she now enjoys drawing and often reaches for the brush.\nMy wife and I work in design. While choosing a playroom we were shocked by the plastic, ugly interiors of almost every nursery and kindergarten we visited. We don't want our child to grow up in that kind of environment. Ani has made sure her place is bright and cheerful. The design is pleasant and child-friendly without underestimating the intelligence of its little residents.\nWe send Mira to ANETO every morning with great trust and joy, and we wish its founders every success!"}
+    ],
     formEndpoint:'',      /* напр. https://api.web3forms.com/submit или https://formspree.io/f/xxxx */
     formAccessKey:'',     /* само за Web3Forms */
     photos:[]             /* напр. [{src:'photos/1.jpg',alt:'Стаята за игри',caption:'Стаята за игри'}] */
@@ -52,7 +56,8 @@
     icons:{globe:'globe',book:'book',pencil:'pencil',tent:'tent',ball:'ball',lion:'lion cub'},
     card:'Card: ',hidden:'Hidden card ',win:function(m){return 'Well done! You found all pairs in '+m+' moves.'},champ:'Hooray! You are a champion!',
     cheers:['Well done!','That\'s right!','Great!'],
-    themeDark:'Switch to dark theme',themeLight:'Switch to light theme'
+    themeDark:'Switch to dark theme',themeLight:'Switch to light theme',
+    revMore:'Read the full review',revLess:'Show less',revTranslated:'translated from Bulgarian'
   }:{
     name:CONFIG.name,street:CONFIG.street,city:CONFIG.city,addrFull:CONFIG.addressFull,chip:'Център, '+CONFIG.street,
     hours:['Понеделник – петък','Събота и неделя'],closedDay:'почивен ден',
@@ -69,7 +74,8 @@
     icons:{globe:'глобус',book:'книга',pencil:'молив',tent:'палатка',ball:'топка',lion:'лъвче'},
     card:'Карта: ',hidden:'Скрита карта ',win:function(m){return 'Браво! Намерихте всички двойки за '+m+' хода.'},champ:'Ура! Ти си шампион!',
     cheers:['Браво!','Точно така!','Чудесно!'],
-    themeDark:'Включи тъмна тема',themeLight:'Включи светла тема'
+    themeDark:'Включи тъмна тема',themeLight:'Включи светла тема',
+    revMore:'Прочети целия отзив',revLess:'Скрий',revTranslated:''
   };
   CONFIG.hours[0].label=L.hours[0];CONFIG.hours[1].label=L.hours[1];
 
@@ -290,8 +296,16 @@
     var l=$('#rev-list');if(!l||!CONFIG.reviews||!CONFIG.reviews.length)return;
     l.innerHTML=CONFIG.reviews.map(function(r){
       var n=Math.max(1,Math.min(5,r.stars||5)),s='';for(var i=0;i<n;i++)s+='★';
-      return '<article class="rcard"><div class="rstars" aria-label="'+n+L.stars+'">'+s+'</div><p>'+esc(r.text)+'</p><footer><b>'+esc(r.name)+'</b><span>Google'+(r.when?' · '+esc(r.when):'')+'</span></footer></article>';
+      var txt=(EN&&r.text_en)?r.text_en:r.text,paras=String(txt).split(/\n+/).filter(Boolean),long=paras.length>2;
+      var body=paras.map(function(p,i){return '<p'+(long&&i>1?' class="rmore" hidden':'')+'>'+esc(p)+'</p>'}).join('');
+      var who=(EN&&r.name_en)?r.name_en:r.name;
+      return '<article class="rcard"><div class="rstars" aria-label="'+n+L.stars+'">'+s+'</div><div class="rtext">'+body+'</div>'+
+        (long?'<button class="rtoggle" type="button" aria-expanded="false">'+L.revMore+'</button>':'')+
+        '<footer><b>'+esc(who)+'</b><span>Google'+(r.when?' · '+esc(r.when):'')+(EN&&r.text_en?' · '+L.revTranslated:'')+'</span></footer></article>';
     }).join('');
+    l.addEventListener('click',function(e){var b=e.target.closest('.rtoggle');if(!b)return;
+      var open=b.getAttribute('aria-expanded')!=='true';$$('.rmore',b.parentNode).forEach(function(p){p.hidden=!open});
+      b.setAttribute('aria-expanded',open?'true':'false');b.textContent=open?L.revLess:L.revMore;});
   })();
 
   /* --- бисквитки и Google Analytics --- */
