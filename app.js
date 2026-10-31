@@ -205,23 +205,23 @@
 
   /* --- форма --- */
   var form=$('#book-form'),st=$('#f-status'),btn=$('#f-btn');
-  function say(msg,bad){st.style.color=bad?'var(--red)':'var(--accent)';st.textContent=msg}
+  function formMsg(msg,bad){st.style.color=bad?'var(--red)':'var(--accent)';st.textContent=msg}
   if(form)form.addEventListener('submit',function(e){
     e.preventDefault();
     var name=$('#f-name').value.trim(),phone=$('#f-phone').value.trim();
-    if(!name||phone.replace(/\D/g,'').length<6){say('Моля, въведете име и телефон, за да се свържем с вас.',true);return}
-    if(!$('#f-consent').checked){say('Моля, потвърдете съгласието за обработка на данните.',true);return}
-    if($('#f-web').value){say('Благодарим!',false);form.reset();return}
+    if(!name||phone.replace(/\D/g,'').length<6){formMsg('Моля, въведете име и телефон, за да се свържем с вас.',true);return}
+    if(!$('#f-consent').checked){formMsg('Моля, потвърдете съгласието за обработка на данните.',true);return}
+    if($('#f-web').value){formMsg('Благодарим!',false);form.reset();return}
     var first=name.split(' ')[0];
     if(!CONFIG.formEndpoint){
-      say('Благодарим, '+first+'! Това е демо: в готовия сайт запитването пристига директно на занималнята.',false);form.reset();return;
+      formMsg('Благодарим, '+first+'! Това е демо: в готовия сайт запитването пристига директно на занималнята.',false);form.reset();return;
     }
     var body={name:name,phone:phone,age:$('#f-age').value,time:$('#f-time').value,subject:'Ново запитване от сайта на '+CONFIG.name};
     if(CONFIG.formAccessKey)body.access_key=CONFIG.formAccessKey;
-    btn.disabled=true;say('Изпращаме запитването...',false);
+    btn.disabled=true;formMsg('Изпращаме запитването...',false);
     fetch(CONFIG.formEndpoint,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)})
-      .then(function(r){if(!r.ok)throw new Error('bad');say('Благодарим, '+first+'! Получихме запитването и ще ви се обадим.',false);form.reset();track('generate_lead')})
-      .catch(function(){say('Не успяхме да изпратим запитването. Моля, обадете се на '+CONFIG.phoneDisplay+'.',true)})
+      .then(function(r){if(!r.ok)throw new Error('bad');formMsg('Благодарим, '+first+'! Получихме запитването и ще ви се обадим.',false);form.reset();track('generate_lead')})
+      .catch(function(){formMsg('Не успяхме да изпратим запитването. Моля, обадете се на '+CONFIG.phoneDisplay+'.',true)})
       .then(function(){btn.disabled=false});
   });
 
@@ -302,7 +302,7 @@
     w.classList.remove('cheer','oops');void w.offsetWidth;w.classList.add(m);
     clearTimeout(w._mt);w._mt=setTimeout(function(){w.classList.remove(m)},ms||1300);
   }
-  var LINES=['Здравей! Аз съм Точко!','Най-хубавото място след училище!','Днес рисуваме ли?','Не забравяй да пиеш вода!','Искаш ли да поиграем на памет?'];
+  var LINES=['Здравей! Аз съм Точко!','Днес ще строим ли с лего?','Днес рисуваме ли?','Не забравяй да пиеш вода!','Искаш ли да поиграем на памет?'];
   mascots.forEach(function(w){
     var n=0;
     $('.mascot',w).addEventListener('click',function(){
