@@ -50,3 +50,6 @@ GitHub Pages е статичен хостинг, затова формата и�
 
 ## Шрифтове
 Amatic SC (заглавията) е в папка fonts/ и се зарежда от самия сайт. Лицензът е SIL Open Font License (fonts/OFL-AmaticSC.txt), позволява свободно ползване в сайтове. Nunito (текстът) също е в fonts/ (fonts/OFL-Nunito.txt). Сайтът не зарежда нищо от Google Fonts.
+
+## Тестов адрес: сайтът е скрит от Google
+Докато сайтът е на тестовия адрес, всички страници имат <meta name="robots" content="noindex, nofollow">, за да не се индексират. При преместване на aneto.bg изтрийте този ред от всички .html файлове.
