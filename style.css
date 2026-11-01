@@ -700,3 +700,18 @@ textarea:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 4px rgba
 .tips-more{margin-top:28px}.tips-more a{color:var(--fg);font-weight:800}
 .fd-link{display:inline-block;margin-top:22px;font-weight:800;color:var(--fg);text-decoration:none;border-bottom:2px solid var(--yellow)}
 .fd-link:hover{border-color:var(--orange)}
+
+/* екип: Ани на цял ред, сертификатите под нея */
+@media (min-width:1024px){
+  .team.team-solo{grid-template-columns:repeat(3,1fr)}
+  .team-solo .mate{grid-column:1/-1;grid-template-columns:150px minmax(0,1fr);max-width:none}
+  .team-solo .mate .mate-photo{width:150px;height:150px}
+  .team-solo .mate-cv{grid-template-columns:repeat(3,1fr);gap:10px 24px}
+}
+@media (min-width:640px) and (max-width:1023px){
+  .team.team-solo,.team.team-more{grid-template-columns:1fr 1fr}
+  .team-solo .mate{grid-column:1/-1}
+  .team .mate{grid-template-columns:88px minmax(0,1fr);justify-items:stretch;align-items:center}
+  .team-solo .mate{grid-template-columns:120px minmax(0,1fr)}
+  .team-solo .verify{grid-column:1/-1}
+}
