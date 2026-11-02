@@ -715,3 +715,4 @@ textarea:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 4px rgba
   .team-solo .mate{grid-template-columns:120px minmax(0,1fr)}
   .team-solo .verify{grid-column:1/-1}
 }
+@media (min-width:1024px){.team-solo .verify{grid-column:span 2}}
