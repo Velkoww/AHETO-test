@@ -716,3 +716,14 @@ textarea:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 4px rgba
   .team-solo .verify{grid-column:1/-1}
 }
 @media (min-width:1024px){.team-solo .verify{grid-column:span 2}}
+
+/* лого в горната лента: АНЕТО с жълтата точка (като табелата) */
+.brand{gap:0}
+.brand-text{align-items:flex-start;gap:2px}
+.brand-logo{position:relative;display:inline-block;font-size:2.7rem;line-height:.95;padding-left:4px}
+.brand-dot{position:absolute;left:-2px;top:.06em;width:.46em;height:.46em;border-radius:50%;background:var(--yellow);transition:transform .35s cubic-bezier(.3,1.6,.5,1)}
+.brand:hover .brand-dot{transform:translate(-2px,-3px) scale(1.08)}
+.brand-text .brand-logo b{position:relative;display:block;font-family:var(--font-display);font-weight:700;font-size:1em;letter-spacing:.06em;margin:0;color:var(--fg);line-height:.95}
+.brand-text small{order:2;color:var(--accent);font-size:.6rem;letter-spacing:.2em}
+@media (max-width:400px){.brand-logo{font-size:2.1rem}.brand-text small{font-size:.54rem;letter-spacing:.12em}}
+@media (prefers-reduced-motion:reduce){.brand-dot{transition:none}}
