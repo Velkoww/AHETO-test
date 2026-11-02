@@ -184,7 +184,8 @@
     CONFIG.hours.forEach(function(h){if(h.closed)return;spec.push({'@type':'OpeningHoursSpecification',dayOfWeek:h.days.map(function(d){return dn[d]}),opens:h.open,closes:h.close})});
     var ld={'@context':'https://schema.org','@type':'ChildCare',name:L.name,telephone:CONFIG.phoneIntl,
       address:{'@type':'PostalAddress',streetAddress:CONFIG.street,postalCode:CONFIG.postalCode,addressLocality:CONFIG.city,addressCountry:'BG'},
-      openingHoursSpecification:spec,hasMap:CONFIG.mapsUrl,url:location.href.split('#')[0]};
+      openingHoursSpecification:spec,hasMap:CONFIG.mapsUrl,url:location.href.split('#')[0],
+      image:'https://aneto.bg/og.png',sameAs:['https://www.facebook.com/share/19XH3xem5d/','https://www.instagram.com/nursery.aneto/']};
     var sc=document.createElement('script');sc.type='application/ld+json';sc.textContent=JSON.stringify(ld);document.head.appendChild(sc);
   }catch(e){}
 
@@ -285,7 +286,7 @@
     if(!CONFIG.formEndpoint){
       formMsg(L.fDemo(first),false);form.reset();return;
     }
-    var body={subject:L.subject+CONFIG.name+(EN?' (EN)':''),from_name:'Сайт АНЕТО','Име':name,'Телефон':phone,'Възраст на детето':$('#f-age').value,'Удобен час':$('#f-time').value,'Език на сайта':EN?'английски':'български'};
+    var body={subject:L.subject+CONFIG.name+(EN?' (EN)':''),from_name:'Сайт АНЕТО','Име':name,'Телефон':phone,'Възраст на детето':$('#f-age').value,'Удобен ден':$('#f-time').value,'Език на сайта':EN?'английски':'български'};
     if(CONFIG.formAccessKey)body.access_key=CONFIG.formAccessKey;
     btn.disabled=true;formMsg(L.fSending,false);
     fetch(CONFIG.formEndpoint,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)})
