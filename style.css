@@ -727,3 +727,24 @@ textarea:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 4px rgba
 .brand-text small{order:2;color:var(--accent);font-size:.6rem;letter-spacing:.2em}
 @media (max-width:400px){.brand-logo{font-size:2.1rem}.brand-text small{font-size:.54rem;letter-spacing:.12em}}
 @media (prefers-reduced-motion:reduce){.brand-dot{transition:none}}
+
+/* снимка в началото */
+.hero-photo{position:absolute;inset:0;border-radius:36px;overflow:hidden;border:10px solid var(--surface);box-shadow:0 22px 40px -18px rgba(23,82,92,.45);z-index:1}
+.hero-photo img{display:block;width:100%;height:100%;object-fit:cover}
+.hero-dot{position:absolute;border-radius:50%;z-index:2}
+.hd1{width:22%;aspect-ratio:1;right:-6%;top:-5%;background:var(--yellow)}
+.hd2{width:9%;aspect-ratio:1;right:-9%;top:20%;background:var(--red)}
+.hd3{width:7%;aspect-ratio:1;left:-5%;top:12%;background:var(--purple);z-index:0}
+@media (prefers-reduced-motion:no-preference){.hd1{animation:hd-float 6s ease-in-out infinite}.hd2{animation:hd-float 7s ease-in-out -2s infinite reverse}}
+@keyframes hd-float{50%{transform:translateY(-8px)}}
+
+/* страница 404 */
+.nf{padding-block:clamp(48px,9vw,110px)}
+.nf-in{display:grid;gap:28px;align-items:center;justify-items:center;text-align:center}
+.nf-in .lead{margin-inline:auto}
+.nf-in .cta-row{justify-content:center;margin-top:24px;flex-wrap:wrap}
+.nf-code{font-family:var(--font-display);font-weight:700;font-size:clamp(5rem,18vw,9rem);line-height:.9;color:var(--yellow);margin:0}
+.nf-mascot{--w:clamp(140px,30vw,200px)}
+@media (min-width:860px){.nf-in{grid-template-columns:auto 1fr;justify-items:start;text-align:left;gap:56px}.nf-in .lead{margin-inline:0}.nf-in .cta-row{justify-content:flex-start}}
+.hero{overflow-x:clip}
+.nf h1{font-size:clamp(2.6rem,7vw,4rem)}

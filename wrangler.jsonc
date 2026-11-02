@@ -1,0 +1,10 @@
+// Cloudflare Workers: статичният сайт АНЕТО.
+// not_found_handling: при несъществуващ адрес се показва 404.html (en/404.html за английските адреси).
+{
+  "name": "aheto-test",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./",
+    "not_found_handling": "404-page"
+  }
+}
