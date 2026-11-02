@@ -748,3 +748,9 @@ textarea:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 4px rgba
 @media (min-width:860px){.nf-in{grid-template-columns:auto 1fr;justify-items:start;text-align:left;gap:56px}.nf-in .lead{margin-inline:0}.nf-in .cta-row{justify-content:flex-start}}
 .hero{overflow-x:clip}
 .nf h1{font-size:clamp(2.6rem,7vw,4rem)}
+/* социални мрежи във футъра */
+.fsoc{display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;margin-bottom:16px}
+.fsoc span{font-weight:700}
+.fsoc a{display:inline-flex;align-items:center;gap:7px;font-weight:800;color:var(--fg);text-decoration:none}
+.fsoc a:hover{text-decoration:underline}
+.fsoc svg{flex:none}
