@@ -26,6 +26,8 @@
       {label:'Събота и неделя',days:[6,0],closed:true}
     ],
     gaId:'G-K0QLK2LH5J',            /* Google Analytics 4, напр. 'G-ABC123XYZ0'. Зарежда се само след съгласие. */
+    adsId:'AW-18541920061',         /* Google Ads – отчита запитванията от рекламата. Зарежда се заедно с Analytics, само след съгласие. */
+    adsLeadLabel:'pApTCI2GjLEdEL3-vIlF', /* етикет на конверсията „Submit lead form“ */
     reviews:[            /* {name, text, text_en (превод за английската версия), stars, when}. Редовете в text стават отделни абзаци. */
       {name:'Родител',name_en:'A parent',stars:5,when:'',source:'google',
        text:"Ани се грижи за дъщеря ни през по-голямата част от 2021 г.\nМира се привърза към нея  още през първата седмица. - спокойствието и дискретното чувство за хумор на Ани бързо ни вдъхнаха доверие, а дъщеря ни изпитваше искрена радост при всяко нейно появяване.\nНякак Ани намира фината зона на комуникация, в която се държи с нея като с дете, без да я лигави или подценява.\nЗа времето заедно Мира напредна страшно много - започна да общува и говори много добре за възрастта си и да се заиграва с другите деца.\nНещо уникално при Ани - може би това, кеото ни привлече най-силно в началото - е богатият ѝ опит в сферата на изкуството и превеждането му на детски език. Въпреки, че произведенията на дъщеря ни все още приличат на работите на Пикасо от късния му период :)) виждаме, че вече ѝ е интересно да рисува и често търси четката.\nСъс съпругата ми се занимаваме с дизайн - докато избирахме занималня бяхме потресени от пластмасовите и грозни интериори на почти всички ясли и детски градини, които оглеждахме. Ние не искаме детето ни да расте в такава среда. Ани се е погрижила нейното място да е светло и ведро. Дизайнът е приятен и детски без да подценява интелекта на малките обитатели.\nС голямо доверие и радост изпращаме Мира в занималня \"Ането\" всяка сутрин и желаем успех на създателите ѝ!",
@@ -290,7 +292,7 @@
     if(CONFIG.formAccessKey)body.access_key=CONFIG.formAccessKey;
     btn.disabled=true;formMsg(L.fSending,false);
     fetch(CONFIG.formEndpoint,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(body)})
-      .then(function(r){if(!r.ok)throw new Error('bad');formMsg(L.fOk(first),false);form.reset();track('generate_lead')})
+      .then(function(r){if(!r.ok)throw new Error('bad');formMsg(L.fOk(first),false);form.reset();track('generate_lead');trackAdsLead()})
       .catch(function(){formMsg(L.fErr(CONFIG.phoneDisplay),true)})
       .then(function(){btn.disabled=false});
   });
@@ -372,6 +374,7 @@
     gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
     gtag('js',new Date());
     gtag('config',CONFIG.gaId,{anonymize_ip:true,allow_google_signals:false});
+    if(CONFIG.adsId)gtag('config',CONFIG.adsId);
     var s=document.createElement('script');s.async=true;
     s.src='https://www.googletagmanager.com/gtag/js?id='+encodeURIComponent(CONFIG.gaId);
     document.head.appendChild(s);
@@ -390,6 +393,7 @@
   }
   function applyConsent(on){if(on)loadGA();else clearGA()}
   function track(name,params){if(gaLoaded&&window.gtag)window.gtag('event',name,params||{})}
+  function trackAdsLead(){if(gaLoaded&&window.gtag&&CONFIG.adsId&&CONFIG.adsLeadLabel)window.gtag('event','conversion',{send_to:CONFIG.adsId+'/'+CONFIG.adsLeadLabel})}
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('[data-href]');if(!a)return;
     var t=a.getAttribute('data-href');
