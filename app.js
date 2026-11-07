@@ -29,6 +29,9 @@
     adsId:'AW-18541920061',         /* Google Ads – отчита запитванията от рекламата. Зарежда се заедно с Analytics, само след съгласие. */
     adsLeadLabel:'pApTCI2GjLEdEL3-vIlF', /* етикет на конверсията „Submit lead form“ */
     reviews:[            /* {name, text, text_en (превод за английската версия), stars, when}. Редовете в text стават отделни абзаци. */
+      {name:'Мирела В.',name_en:'Mirela V.',stars:5,when:'ноември 2026',when_en:'November 2026',source:'site',
+       text:"За пръв път заведох дъщеря ми в занималнята, когато беше на 2 и се бях подготвила за плавна адаптация с родител, но тя просто посочи Ани и каза „Мама?“ и ми помаха за чао. От тогава Ани стана като част от семейството ни, а аз съм спокойна, че Кари е като у дома си в Ането.",
+       text_en:"The first time I took my daughter to the centre she was 2, and I had prepared for a gentle settling-in with a parent, but she just pointed at Ani, said \"Mama?\" and waved me goodbye. Since then Ani has become part of our family, and I feel at ease knowing that Kari is at home at Aneto."},
       {name:'Катерина К.',name_en:'Katerina K.',stars:5,when:'ноември 2026',when_en:'November 2026',source:'google',
        text:"Дъщеря ни посещава редовно занималнята и винаги тръгва към нея с желание! Ани работи прекрасно не само с децата, но и с родителите, като умее да адаптира подхода си към образователните и/или социални нужди на детето. Вярвам, че тя ще ни помогне да се подготвим по-целенасочено и за 1. клас.",
        text_en:"Our daughter attends the centre regularly and always goes there happily! Ani works wonderfully not only with the children but with the parents too, and she knows how to adapt her approach to the child's educational and/or social needs. I believe she will help us prepare more purposefully for first grade."},
