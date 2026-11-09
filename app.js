@@ -406,11 +406,23 @@
   function applyConsent(on){if(on)loadGA();else clearGA()}
   function track(name,params){if(gaLoaded&&window.gtag)window.gtag('event',name,params||{})}
   function trackAdsLead(){if(gaLoaded&&window.gtag&&CONFIG.adsId&&CONFIG.adsLeadLabel)window.gtag('event','conversion',{send_to:CONFIG.adsId+'/'+CONFIG.adsLeadLabel})}
+  /* кликове по бутони и връзки → Google Analytics (само след съгласие) */
   document.addEventListener('click',function(e){
-    var a=e.target.closest&&e.target.closest('[data-href]');if(!a)return;
-    var t=a.getAttribute('data-href');
+    var a=e.target.closest&&e.target.closest('a,button');if(!a||a.closest('#cookie'))return;
+    var href=a.getAttribute('href')||'';
+    var text=(a.getAttribute('aria-label')||a.textContent||'').replace(/\s+/g,' ').trim().slice(0,100);
+    var sec=a.closest('header')?'header':a.closest('footer')?'footer':a.closest('nav')?'menu':((a.closest('section[id],main')||{}).id||'page');
+    var p={button_text:text,link_url:href,button_location:sec};
+    var t=(a.getAttribute('data-href')||'').replace(/^.*\//,'');
     var ev={tel:'click_to_call',viber:'click_viber',wa:'click_whatsapp',dir:'click_directions',maps:'click_google_maps'}[t];
-    if(ev)track(ev);
+    if(!ev){
+      if(/facebook\.com/i.test(href))ev='click_facebook';
+      else if(/instagram\.com/i.test(href))ev='click_instagram';
+      else if(/^mailto:/i.test(href))ev='click_email';
+      else if(/#book$/.test(href))ev='click_book';
+    }
+    if(ev)track(ev,p);
+    track('button_click',p);
   });
   (function(){
     var ck=$('#cookie');if(!ck)return;
