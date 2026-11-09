@@ -411,8 +411,13 @@
     var a=e.target.closest&&e.target.closest('a,button');if(!a||a.closest('#cookie'))return;
     var href=a.getAttribute('href')||'';
     var text=(a.getAttribute('aria-label')||a.textContent||'').replace(/\s+/g,' ').trim().slice(0,100);
-    var sec=a.closest('header')?'header':a.closest('footer')?'footer':a.closest('nav')?'menu':((a.closest('section[id],main')||{}).id||'page');
-    var p={button_text:text,link_url:href,button_location:sec};
+    /* къде е бутонът: страница + част от страницата, напр. „index – долна лента“ */
+    var NAMES={top:'начало',cta:'призив долу',contact:'контакти',book:'форма за запитване',reviews:'отзиви',blog:'блог',photos:'снимки',why:'защо нас',start:'как да започнем',more:'още'};
+    var s=a.closest('.callbar')?'долна лента':a.closest('header,.topbar')?'горе':a.closest('nav')?'меню':a.closest('footer')?'футър':
+      a.closest('.find-us')?'как да ни намерите':a.closest('.pagehead')?'заглавие на страницата':'';
+    if(!s){var sc=a.closest('section[id]');s=sc?(NAMES[sc.id]||sc.id):'страница'}
+    var pg=(location.pathname.replace(/^\/+|\.html$/g,'')||'index');
+    var p={button_text:text,link_url:href,button_location:pg+' – '+s};
     var t=(a.getAttribute('data-href')||'').replace(/^.*\//,'');
     var ev={tel:'click_to_call',viber:'click_viber',wa:'click_whatsapp',dir:'click_directions',maps:'click_google_maps'}[t];
     if(!ev){
