@@ -328,6 +328,7 @@ nav a[aria-current="page"]{color:var(--fg);font-weight:800}
 a.panel{display:block;text-decoration:none;min-height:210px}
 .go{position:absolute;left:26px;bottom:24px;z-index:1;width:44px;height:44px;border-radius:50%;background:currentColor;display:grid;place-items:center;transition:transform .3s}
 .go::before{content:"→";font-weight:800;font-size:1.3rem;line-height:1;color:var(--ink,#fff)}
+.p-yellow .go{--ink:var(--yellow)}.panel.wide{grid-column:1/-1;min-height:0}
 .p-orange .go{--ink:var(--orange)}.p-purple .go{--ink:var(--purple)}.p-teal .go{--ink:var(--teal)}
 a.panel:hover .go{transform:translateX(6px)}
 a.panel p{padding-bottom:56px}
@@ -409,6 +410,7 @@ nav#site-nav{gap:0}
 .prose p{margin:0 0 16px}
 .prose ul,.prose ol{margin:0 0 16px;padding-left:1.3em;display:grid;gap:6px}
 .prose a{color:var(--accent);font-weight:800}
+.prose a.btn-primary{color:var(--on-accent)}
 .byline{color:var(--muted);font-weight:700;font-size:.92rem}
 .back{display:inline-flex;margin-top:36px;font-weight:800;text-decoration:none;color:var(--fg);border-bottom:2px solid var(--yellow)}
 
