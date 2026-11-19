@@ -445,7 +445,8 @@
     $$('[data-cookie-settings]').forEach(function(b){b.addEventListener('click',function(){showCk(true)})});
     $$('[data-open-privacy]').forEach(function(a){a.addEventListener('click',function(){var d=$('#privacy');if(d)d.open=true})});
     var c0=readConsent();
-    if(c0)applyConsent(!!c0.analytics);else setTimeout(function(){showCk(false)},700);
+    /* ВРЕМЕННО (тест на Analytics): без избор Analytics се включва веднага; „Отказвам“ го спира */
+    if(c0)applyConsent(!!c0.analytics);else{loadGA();setTimeout(function(){showCk(false)},700)}
   })();
 
   /* --- галерия: снимките се отварят в голям размер --- */
